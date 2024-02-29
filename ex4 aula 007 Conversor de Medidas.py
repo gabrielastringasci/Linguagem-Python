@@ -1,0 +1,5 @@
+valor = float (input ('Escreva um valor em metros: '))
+c = float (valor*100)
+m= float (valor*1000)
+print('Esse valor em centimetros é: {:.1f}'.format(c))
+print('Esse valor em milimetros é: {:.1f}'.format(m))
