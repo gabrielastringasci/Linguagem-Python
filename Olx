@@ -1,0 +1,33 @@
+import requests
+(fazer pip install requests" 
+def obter_anuncios_ativos(access_token):
+    url = "https://apps.olx.com.br/autoupload/published"
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    payload = {
+        "access_token": access_token
+    }
+    
+    response = requests.post(url, json=payload, headers=headers)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Erro: {response.status_code}")
+        return None
+
+def main():
+    access_token = "2cb68a524c25b9a934e9edf4102ef82db5babd77"  # Substitua pelo seu token
+    anuncios = obter_anuncios_ativos(access_token)
+    
+    if anuncios:
+        for anuncio in anuncios:
+            print(f"ID do Anúncio: {anuncio.get('id')}")
+            print(f"List ID: {anuncio.get('list_id')}")
+            print("----------------------------")
+    else:
+        print("Nenhum anúncio ativo encontrado ou ocorreu um erro.")
+
+if __name__ == "__main__":
+    main()
